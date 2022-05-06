@@ -6,6 +6,20 @@
         position: relative;
         height: 100%;
 
+        .logo {
+            position: absolute;
+
+            width: 20%;
+            height: 20%;
+
+            margin-top: 50px;
+            left: 40%;
+
+            background-color: transparent;
+            background: url('../../../assets/logo.png') no-repeat;
+            z-index: 10;
+        }
+
         .background {
             position: absolute;
 
@@ -13,7 +27,6 @@
             width: 100%;
             
             background-blend-mode: multiply;
-            background-color: rgb(18, 2, 59);
             background-size: contain;
             background: url('../../../assets/background-serach.jpg') no-repeat;
             background-size: 100%;    
