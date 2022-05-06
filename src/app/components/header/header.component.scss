@@ -5,7 +5,7 @@ header {
         font-size: x-large;
         text-align: center;
 
-        background-color: rgb(10, 133, 37);
+        background-color: rgb(39, 24, 94);
         padding: 10px;
 
         p {
@@ -19,7 +19,7 @@ header {
         height: 100%;
         padding-top: 20px;
         padding-bottom: 20px;
-        background-color: rgb(5, 71, 71);
+        background-color: rgb(18, 2, 59);
         box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.336);    
         
         ul {    
@@ -37,7 +37,7 @@ header {
                     background-color: var(--button-color);
                     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.336);
                     text-decoration: none;
-                    color: black;
+                    color: var(--font-color);
                 }
                 
             }
