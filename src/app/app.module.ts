@@ -9,12 +9,18 @@ import { HomeComponent } from './components/home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { SearchResultItemComponent } from './components/search-result/search-result-item/search-result-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    SearchResultComponent,
+    SearchResultItemComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +28,9 @@ import {MatInputModule} from '@angular/material/input';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
