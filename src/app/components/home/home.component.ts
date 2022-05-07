@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/searchResult'])
   
     //TODO: add rest call for getting data
-    //this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
+    this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
   }
 
 }

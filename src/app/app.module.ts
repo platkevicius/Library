@@ -13,6 +13,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchResultItemComponent } from './components/search-result/search-result-item/search-result-item.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-overlay.component';
+import { SpinnerInterceptor } from './interceptors/SpinnerInterceptor';
+import { SpinnerOverlayService } from './services/spinner-overlay.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -20,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     HomeComponent,
     SearchResultComponent,
-    SearchResultItemComponent
+    SearchResultItemComponent,
+    SpinnerOverlayComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +36,15 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatInputModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatProgressSpinnerModule,
+    OverlayModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SpinnerInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
