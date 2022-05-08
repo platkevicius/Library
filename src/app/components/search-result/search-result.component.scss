@@ -1,0 +1,22 @@
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Filter Search-Result Search-Result"
+      "Filter Search-Result Search-Result"
+      ". Search-Result Search-Result";
+  }
+  
+  .Search-Result { grid-area: Search-Result; }
+  
+  .Filter { grid-area: Filter; }
+  
+.bar {           
+    margin-top: 15px;
+    
+    width: 60%;
+    left: 20%;
+    top: 30%;
+}

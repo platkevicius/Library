@@ -15,9 +15,9 @@ import { SearchResultItemComponent } from './components/search-result/search-res
 import { FormsModule } from '@angular/forms';
 import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-overlay.component';
 import { SpinnerInterceptor } from './interceptors/SpinnerInterceptor';
-import { SpinnerOverlayService } from './services/spinner-overlay.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { OverlayModule } from "@angular/cdk/overlay";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { OverlayModule } from "@angular/cdk/overlay";
     HttpClientModule,
     FormsModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    MatCardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
