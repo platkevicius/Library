@@ -15,23 +15,26 @@
         <h1>FILTER</h1>
 
         <div class="date">
-            <h3>Select time range</h3>
+            <form>
+                <mat-form-field appearance="fill">
+                    <mat-label>FROM</mat-label>
+                    <input matInput [matDatepicker]="from">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+                    <mat-datepicker #from></mat-datepicker>
+                </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label>FROM</mat-label>
-                <input matInput [matDatepicker]="from">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
-                <mat-datepicker #from></mat-datepicker>
-            </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>TO</mat-label>
+                    <input matInput [matDatepicker]="to">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+                    <mat-datepicker #to></mat-datepicker>
+                </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label>TO</mat-label>
-                <input matInput [matDatepicker]="to">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
-                <mat-datepicker #to></mat-datepicker>
-            </mat-form-field>
+                <br>
+                <button mat-button>Apply</button>
+            </form>
         </div>
     </div>
 </div>

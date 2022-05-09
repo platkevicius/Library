@@ -19,12 +19,19 @@
       text-align: center;
     }
 
-    h3 {
+    button {
       margin: 10px;
+      background-color: rgb(73, 69, 69);
     }
 
-    mat-form-field {
-      margin: 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      mat-form-field {
+        margin: 10px;
+      }
     }
   }
 
