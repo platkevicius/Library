@@ -18,6 +18,9 @@ import { SpinnerInterceptor } from './interceptors/SpinnerInterceptor';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { OverlayModule } from "@angular/cdk/overlay";
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -39,13 +42,18 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     MatProgressSpinnerModule,
     OverlayModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: SpinnerInterceptor,
     multi: true
-  }],
+  },
+  MatDatepickerModule,
+  MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,8 +11,23 @@
   
   .Search-Result { grid-area: Search-Result; }
   
-  .Filter { grid-area: Filter; }
-  
+  .Filter { 
+    grid-area: Filter; 
+    
+    h1 {
+      color : white;
+      text-align: center;
+    }
+
+    h3 {
+      margin: 10px;
+    }
+
+    mat-form-field {
+      margin: 10px;
+    }
+  }
+
 .bar {           
     margin-top: 15px;
     
