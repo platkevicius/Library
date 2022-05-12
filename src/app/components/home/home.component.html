@@ -10,5 +10,13 @@
 
             <button type="submit" hidden #btn></button>
         </form>
+      <div class="authors-container">
+        <h1 class="authors-title">Best Authors:</h1>
+        <div class="best-authors" id="authors">
+          <app-author-item *ngFor="let item of mockData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount"></app-author-item>
+        </div>
+        <button class="scroll-right" (click)="clickScrollRight()"></button>
+        <button class="scroll-left" (click)="clickScrollLeft()"></button>
+      </div>
     </div>
 </div>

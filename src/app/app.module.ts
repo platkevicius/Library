@@ -22,6 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthorItemComponent } from './components/home/author-item/author-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FooterComponent } from './components/footer/footer.component';
     SearchResultComponent,
     SearchResultItemComponent,
     SpinnerOverlayComponent,
-    FooterComponent
+    FooterComponent,
+    AuthorItemComponent
   ],
   imports: [
     BrowserModule,
