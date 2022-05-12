@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     HomeComponent,
     SearchResultComponent,
     SearchResultItemComponent,
-    SpinnerOverlayComponent
+    SpinnerOverlayComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
