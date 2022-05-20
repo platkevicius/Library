@@ -83,6 +83,8 @@
           width: 3vw;
           height: 3vw;
           border: none;
+          opacity: 70%;
+          display: block;
         }
         .scroll-left {
           position: absolute;
@@ -94,6 +96,8 @@
           width: 3vw;
           height: 3vw;
           border: none;
+          opacity: 70%;
+          display: none;
         }
     }
 }
