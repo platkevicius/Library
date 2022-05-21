@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="Search-Result">
-        <app-search-result-item *ngFor="let item of mockData" [title]="item.dcTitle" [authors]="item.dcCreator" [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
+        <app-search-result-item *ngFor="let item of pageSlice" [title]="item.dcTitle" [authors]="item.dcCreator" [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
     </div>
     <div class="Filter">
         <h1>FILTER</h1>
@@ -40,8 +40,9 @@
 </div>
 
 <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]"
-        aria-label="Select page">
+    [length]="this.mockData.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10]"
+    (page)="OnPageChange($event)"
+    aria-label="Select page">
 </mat-paginator>

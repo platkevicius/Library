@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SearchResponse } from 'src/app/models/SearchResponse';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -8,6 +9,8 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search-result.component.scss']
 })
 export class SearchResultComponent implements OnInit {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;    
 
   mockData: SearchResponse[] = [{dcTitle: "An introduction to competitive programming",
   dcCreator: "Daniel Platkevicius",
@@ -50,6 +53,8 @@ export class SearchResultComponent implements OnInit {
   dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
   dcDate: "22.03.2002",},]
 
+  pageSlice = this.mockData.slice(0, 5);
+
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
@@ -58,6 +63,17 @@ export class SearchResultComponent implements OnInit {
   onSubmit(): void {
     //TODO: add rest call for getting data
     this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
+  }
+
+  OnPageChange(event: PageEvent) {
+    console.log(event);
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+
+    if (endIndex > this.mockData.length)
+      endIndex = this.mockData.length;
+
+      this.pageSlice = this.mockData.slice(startIndex, endIndex);
   }
 
 }
