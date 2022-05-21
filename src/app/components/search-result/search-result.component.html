@@ -1,7 +1,7 @@
 <form #form="ngForm" (submit)="onSubmit()">
     <mat-form-field class="bar" appearance="outline">
         <mat-label>SEARCH</mat-label>
-        <input type="text" matInput placeholder="Mathematics">
+        <input type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
     </mat-form-field>
 
     <button type="submit" hidden #btn></button>
@@ -15,10 +15,10 @@
         <h1>FILTER</h1>
 
         <div class="date">
-            <form>
+            <form [formGroup]="filter" (submit)="filterResults()">
                 <mat-form-field appearance="fill">
                     <mat-label>FROM</mat-label>
-                    <input matInput [matDatepicker]="from">
+                    <input formControlName="from" matInput [matDatepicker]="from">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
                     <mat-datepicker #from></mat-datepicker>
@@ -26,15 +26,15 @@
 
                 <mat-form-field appearance="fill">
                     <mat-label>TO</mat-label>
-                    <input matInput [matDatepicker]="to">
+                    <input formControlName="to" matInput [matDatepicker]="to">
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
                     <mat-datepicker #to></mat-datepicker>
                 </mat-form-field>
 
-                <mat-form-field>
+                <mat-form-field appearance="fill">
                     <mat-label>Author</mat-label>
-                    <input matInput>
+                    <input formControlName="author" matInput>
                 </mat-form-field>
 
                 <br>

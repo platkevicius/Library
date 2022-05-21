@@ -5,7 +5,7 @@
         <form #form="ngForm" (submit)="onSubmit()">
             <mat-form-field class="bar" appearance="outline">
                 <mat-label>SEARCH</mat-label>
-                <input type="text" matInput placeholder="Mathematics">
+                <input type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
             </mat-form-field>
 
             <button type="submit" hidden #btn></button>

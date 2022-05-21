@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
 
   @Input() authorLength: number = this.mockData.length;
 
+  query: string;
+
   constructor(private searchService: SearchService, private router: Router) {
   }
 
@@ -42,9 +44,10 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('Query: ' + this.query);
     this.router.navigate(['/searchResult']);
 
-    // TODO: add rest call for getting data
+    // TODO: add rest call for getting data and pass the data to the serach result component
     this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
   }
 

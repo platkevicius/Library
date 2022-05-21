@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SearchResponse } from 'src/app/models/SearchResponse';
 import { SearchService } from 'src/app/services/search.service';
@@ -55,6 +56,14 @@ export class SearchResultComponent implements OnInit {
 
   pageSlice = this.mockData.slice(0, 5);
 
+  filter = new FormGroup({
+    from: new FormControl(),
+    to: new FormControl(),
+    author: new FormControl()
+  });
+
+  query: string;
+
   constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
@@ -62,10 +71,15 @@ export class SearchResultComponent implements OnInit {
 
   onSubmit(): void {
     //TODO: add rest call for getting data
+    console.log('Query: ' + this.query);
     this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
   }
 
-  OnPageChange(event: PageEvent) {
+  filterResults(): void {
+    console.log(this.filter.value);
+  }
+
+  OnPageChange(event: PageEvent): void {
     console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
