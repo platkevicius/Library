@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
@@ -79,6 +79,23 @@ export class HomeComponent implements OnInit {
       document.getElementById('scroll-right').style.display = 'none';
     } else {
       document.getElementById('scroll-right').style.display = 'block';
+    }
+  }
+
+  clickScrollUp(): void  {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  @HostListener('window:scroll', [])
+  checkWindowScroll(): void {
+    if (window.pageYOffset < 300) {
+      document.getElementById('scroll-up').style.display = 'none';
+    } else {
+      document.getElementById('scroll-up').style.display = 'block';
     }
   }
 

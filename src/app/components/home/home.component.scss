@@ -79,7 +79,6 @@
           top: 45%;
           background: url('../../../assets/arrowR.png') no-repeat;
           background-size: 3vw;
-          //background-
           width: 3vw;
           height: 3vw;
           border: none;
@@ -92,7 +91,6 @@
           top: 45%;
           background: url('../../../assets/arrowL.png') no-repeat;
           background-size: 3vw;
-          //background-
           width: 3vw;
           height: 3vw;
           border: none;
@@ -100,4 +98,15 @@
           display: none;
         }
     }
+  .scroll-up {
+    position: fixed;
+    left: 95%;
+    top: 90%;
+    background: url('../../../assets/arrowUp.png') no-repeat;
+    background-size: 2vw;
+    width: 2vw;
+    height: 2vw;
+    border: none;
+    display: none;
+  }
 }
