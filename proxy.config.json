@@ -1,0 +1,9 @@
+{
+    "/server/*": 
+    {
+        "target": "https://webtech.informatik.unibw-muenchen.de",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
