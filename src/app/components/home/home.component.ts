@@ -1,4 +1,5 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
@@ -11,37 +12,51 @@ import {Authors} from '../../models/Authors';
 export class HomeComponent implements OnInit {
 
   mockData: Authors[] = [
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6}
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
+    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '}
   ];
+
+  aData: Authors[] = [];
 
   @Input() authorLength: number = this.mockData.length;
 
   query: string;
 
-  constructor(private searchService: SearchService, private router: Router) {
+  constructor(private searchService: SearchService, private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
+
+    this.http
+      .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/facets/author', {})
+      .subscribe(data => {
+        console.log(data);
+
+        for (let i = 0; i < 20; i++) {
+          this.aData[i] = {name: data._embedded.values[i].label, downloadCount: 0,
+            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search};
+        }
+      });
   }
+
 
   onSubmit(): void {
     console.log('Query: ' + this.query);
@@ -100,6 +115,10 @@ export class HomeComponent implements OnInit {
     } else {
       document.getElementById('scroll-up').style.display = 'block';
     }
+  }
+
+  authorClicked(link): void {
+    this.router.navigate(['/searchResult']);
   }
 
 }
