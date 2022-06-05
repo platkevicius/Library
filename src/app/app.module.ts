@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-overlay.component';
 import { SpinnerInterceptor } from './interceptors/SpinnerInterceptor';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { OverlayModule } from "@angular/cdk/overlay";
+import { OverlayModule } from '@angular/cdk/overlay';
 import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';

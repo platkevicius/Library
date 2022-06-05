@@ -13,14 +13,15 @@
         .logo {
             position: absolute;
 
-            width: 30%;
-            height: 8%;
+            width: 20vw;
+            height: 20vw;
 
             margin-top: 50px;
             left: 40%;
 
             background-color: transparent;
             background: url('../../../assets/logo.png') no-repeat;
+            background-size: 20vw;
             z-index: 10;
         }
 
@@ -47,12 +48,14 @@
         .authors-container {
           position: absolute;
           background: black;
-          height: 15%;
+          //height: 30vh;
+          height: 250px;
           width: 100%;
-          top: 42%;
+          top: 30%;
         }
 
         .authors-title {
+          height: 10%;
           padding: 1%;
           color : white;
           text-align: left;
@@ -62,10 +65,10 @@
           position: absolute;
           background: black;
           border: 1px solid black;
-          height: 74%;
+          height: 80%;
           width: 97%;
-          left: 1%;
-          top: 15%;
+          left: 1.5%;
+          top: 18%;
           overflow-x: scroll;
           display: flex;
           flex-direction: row;
@@ -73,6 +76,7 @@
             display: none
           }
         }
+
         .scroll-right {
           position: absolute;
           left: 95%;
