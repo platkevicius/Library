@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
@@ -27,6 +27,8 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
   query: string;
   link: string;
 
+  fixed: boolean;
+
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -40,11 +42,16 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
         console.log('Searching with query: ' + this.query);
         this.onSubmit();
       }
+
+      this.fixed = false;
     }
 
   ngAfterViewChecked():void {
-    this.paginator.lastPage();
-    this.paginator.firstPage();
+    if (!this.fixed) {
+      console.log('test');
+      this.paginator.lastPage();
+      this.paginator.firstPage();
+    }
   }
 
   onSubmit(): void {
@@ -126,6 +133,7 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
   }
 
   OnPageChange(event: PageEvent): void {
+    this.fixed = true;
     console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
