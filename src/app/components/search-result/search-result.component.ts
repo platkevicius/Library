@@ -15,48 +15,9 @@ export class SearchResultComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;    
 
-  mockData: SearchResponse[] = [{dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},
-  {dcTitle: "An introduction to competitive programming",
-  dcCreator: "Daniel Platkevicius",
-  dcDescription: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  dcDate: "22.03.2002",},]
+  mockData: SearchResponse[] = []
 
-  pageSlice = this.mockData.slice(0, 5);
+  pageSlice;
 
   filter = new FormGroup({
     from: new FormControl(),
@@ -69,27 +30,40 @@ export class SearchResultComponent implements OnInit {
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-      console.log('Routing: ' + this.route.snapshot.queryParamMap.get('query'));
-  }
+      this.query = this.route.snapshot.queryParamMap.get('query');
+      this.onSubmit();
+    }
 
   onSubmit(): void {
     //TODO: add rest call for getting data
-    console.log('Query: ' + this.query);
-
+    this.mockData = []
+    var counter = 0;
     this.searchService.searchByQuery(this.query).subscribe(res => {
       if (res == null) return;
 
+      console.log(res._embedded.searchResult._embedded.objects);
       res._embedded.searchResult._embedded.objects.forEach(object => {
         var item = new SearchResponse();
         item.dcTitle = object._embedded.indexableObject.name;
-        object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
-          item.dcCreator = item.dcCreator + ' ' + author.value;
-        })
-        item.dcDescription = object._embedded.indexableObject.metadata["dc.description.abstract"][0].value;
 
-        this.mockData[this.mockData.length] = item;
+        item.dcCreator = '';
+        if (object._embedded.indexableObject.metadata["dc.contributor.author"] != null) {
+          object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
+            item.dcCreator = item.dcCreator + ' ' + author.value;
+          })
+        }
+
+        if (object._embedded.indexableObject.metadata["dc.description.abstract"] != null)
+          item.dcDescription = object._embedded.indexableObject.metadata["dc.description.abstract"][0].value;
+        else
+          item.dcDescription = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+
+        this.mockData[counter] = item;
+        counter++;
       })
     });
+
+    this.pageSlice = this.mockData.slice(0, 5)
   }
 
   filterResults(): void {
