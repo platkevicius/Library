@@ -12,8 +12,7 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   searchByQuery(query: String): Observable<any> {
-    //return this.http.get<Array<SearchResponse>>('/server/api/discover/search/objects?author=' + query + '&configuration=default');
-    return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects');
+    return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + query + '&configuration=default');
   }
 
 }

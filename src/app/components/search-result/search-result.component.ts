@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -65,20 +66,30 @@ export class SearchResultComponent implements OnInit {
 
   query: string;
 
-  sub: any;
-
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.sub = this.route
-      .data
-      .subscribe(v => console.log(v));
+      console.log('Routing: ' + this.route.snapshot.queryParamMap.get('query'));
   }
 
   onSubmit(): void {
     //TODO: add rest call for getting data
     console.log('Query: ' + this.query);
-    this.searchService.searchByQuery('mathematics').subscribe(res => console.log(res));
+
+    this.searchService.searchByQuery(this.query).subscribe(res => {
+      if (res == null) return;
+
+      res._embedded.searchResult._embedded.objects.forEach(object => {
+        var item = new SearchResponse();
+        item.dcTitle = object._embedded.indexableObject.name;
+        object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
+          item.dcCreator = item.dcCreator + ' ' + author.value;
+        })
+        item.dcDescription = object._embedded.indexableObject.metadata["dc.description.abstract"][0].value;
+
+        this.mockData[this.mockData.length] = item;
+      })
+    });
   }
 
   filterResults(): void {
