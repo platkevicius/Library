@@ -1,5 +1,4 @@
-import { identifierModuleUrl } from '@angular/compiler';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +10,7 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, AfterViewChecked {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -40,9 +39,13 @@ export class SearchResultComponent implements OnInit {
       } else {
         console.log('Searching with query: ' + this.query);
         this.onSubmit();
-
       }
     }
+
+  ngAfterViewChecked():void {
+    this.paginator.lastPage();
+    this.paginator.firstPage();
+  }
 
   onSubmit(): void {
     // TODO: add rest call for getting data
