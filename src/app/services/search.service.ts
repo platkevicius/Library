@@ -19,4 +19,8 @@ export class SearchService {
     return this.http.get<any>(link);
   }
 
+  searchWithFilter(query: String, author: String): Observable<any> {
+    return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query='
+      + query + '&author=' + author + '&configuration=default');
+  }
 }

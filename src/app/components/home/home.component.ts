@@ -126,10 +126,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  authorClicked(link): void {
+  authorClicked(link, aName): void {
     console.log('searching with link: ' );
     console.log(link);
-    this.router.navigate(['/searchResult'], {queryParams: {link: link}});
+    this.router.navigate(['/searchResult'], {queryParams: {link: link, author: aName}});
   }
 
 }

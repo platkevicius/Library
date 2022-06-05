@@ -26,6 +26,7 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
 
   query: string;
   link: string;
+  author: string;
 
   fixed: boolean;
 
@@ -34,6 +35,8 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
       this.query = this.route.snapshot.queryParamMap.get('query');
       this.link = this.route.snapshot.queryParamMap.get('link');
+      this.author = this.route.snapshot.queryParamMap.get('author');
+
       if (this.query === null && this.link !== null)  {
         console.log('Searching by link with link: ' );
         console.log(this.link);
@@ -43,7 +46,10 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
         this.onSubmit();
       }
 
-      this.fixed = false;
+    if (this.author !== null) {
+      this.filter.patchValue({author: this.author});
+    }
+    this.fixed = false;
     }
 
   ngAfterViewChecked():void {
