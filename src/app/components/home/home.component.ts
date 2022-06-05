@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Query: ' + this.query);
-    this.router.navigate(['/searchResult'], {queryParams: {query: 'test'}});
+    this.router.navigate(['/searchResult'], {queryParams: {query: this.query}});
     // TODO: add rest call for getting data and pass the data to the serach result component
     this.searchService.searchByQuery('mathematics').subscribe(res => {
       console.log(res._embedded.searchResult._embedded);
