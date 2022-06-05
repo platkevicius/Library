@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 import { SearchResponse } from 'src/app/models/SearchResponse';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -64,9 +65,14 @@ export class SearchResultComponent implements OnInit {
 
   query: string;
 
-  constructor(private searchService: SearchService) { }
+  sub: any;
+
+  constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.sub = this.route
+      .data
+      .subscribe(v => console.log(v));
   }
 
   onSubmit(): void {
