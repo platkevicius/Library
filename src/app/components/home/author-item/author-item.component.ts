@@ -12,6 +12,7 @@ export class AuthorItemComponent implements OnInit {
   @Input() name: String;
   @Input() downloads: number;
   @Input() publications: number;
+  @Input() link: String;
 
   constructor() { }
 

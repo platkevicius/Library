@@ -15,4 +15,8 @@ export class SearchService {
     return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + query + '&configuration=default');
   }
 
+  searchByLink(link: string): Observable<any> {
+    return this.http.get<any>(link);
+  }
+
 }
