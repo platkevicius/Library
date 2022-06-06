@@ -26,17 +26,11 @@
       <div class = "downloaded-items-container">
         <h1 class = "downloaded-items-title">Most Downloaded Items</h1>
         <div class ="most-downloaded" id="downloads" (scroll)="checkButtonVisibility()">
-
           <app-downloaded-item *ngFor="let item of downloadMockData" [nameOfArticle]="item.nameOfArticle" [numberOfDownloads]="item.numberOfDownloads" [releaseDate]="item.releaseDate"></app-downloaded-item>
-
         </div>
+
       </div>
 
-
-
-
     </div>
-
-
 
 </div>

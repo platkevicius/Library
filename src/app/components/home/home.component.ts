@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
-import {Downloads} from "../../models/Downloads";
+import {Downloads} from '../../models/Downloads';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '}
   ];
 
-  //Array with download objects
+  // Array with download objects
   downloadMockData: Downloads[] = [
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''}
-  ]
+  ];
 
   aData: Authors[] = [];
 
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
 
         for (let i = 0; i < 20; i++) {
           this.aData[i] = {name: data._embedded.values[i].label, downloadCount: 0,
-            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search};
+            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href};
         }
       });
   }
@@ -91,30 +91,30 @@ export class HomeComponent implements OnInit {
       res._embedded.searchResult._embedded.objects.forEach(object => {
         console.log('Title: ' + object._embedded.indexableObject.name);
         console.log('Authors: ');
-        object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
+        object._embedded.indexableObject.metadata['dc.contributor.author'].forEach(author => {
           console.log(author.value);
-        })
-        console.log('Abstract: ' + object._embedded.indexableObject.metadata["dc.description.abstract"][0].value);
-      })
+        });
+        console.log('Abstract: ' + object._embedded.indexableObject.metadata['dc.description.abstract'][0].value);
+      });
     });
   }
 
   clickScrollRight(): void {
     document.getElementById('authors').scrollBy({
       top: 0,
-      left: 500,
+      left: 550,
       behavior: 'smooth'
     });
-    this.checkButtonVisibility(500);
+    this.checkButtonVisibility(550);
   }
 
   clickScrollLeft(): void {
     document.getElementById('authors').scrollBy({
       top: 0,
-      left: -500,
+      left: -550,
       behavior: 'smooth'
     });
-    this.checkButtonVisibility(-500);
+    this.checkButtonVisibility(-550);
   }
 
   checkButtonVisibility(scrollingBy = 0): void {

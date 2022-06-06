@@ -27,6 +27,8 @@ export class SearchResultComponent implements OnInit {
   query: string;
   link: string;
   author: string;
+  from: string;
+  to: string;
 
   fixed: boolean;
 
@@ -51,7 +53,7 @@ export class SearchResultComponent implements OnInit {
     // TODO: add rest call for getting data
     this.mockData = [];
     let counter = 0;
-    this.searchService.searchWithFilter(this.query, this.author).subscribe(res => {
+    this.searchService.searchWithFilter(this.query, this.author, this.from, this.to).subscribe(res => {
       if (res == null) { return; }
 
       console.log(res._embedded.searchResult._embedded.objects);
@@ -76,15 +78,17 @@ export class SearchResultComponent implements OnInit {
         this.mockData[counter] = item;
         counter++;
       });
-    
+
       this.pageSlice = this.mockData.slice(0, this.paginator.pageSize);
     });
-    
+
   }
 
   filterResults(): void {
     console.log(this.filter.controls.author.value);
     this.author = this.filter.controls.author.value;
+    this.from = this.filter.controls.from.value;
+    this.to = this.filter.controls.to.value;
   }
 
   OnPageChange(event: PageEvent): void {
