@@ -8,7 +8,7 @@
 </form>
 
 <div class="container">
-    <div class="Search-Result">
+    <div id="search-result" class="Search-Result">
         <app-search-result-item *ngFor="let item of pageSlice" [title]="item.dcTitle" [authors]="item.dcCreator" [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
     </div>
     <div class="Filter">
@@ -18,22 +18,18 @@
             <form [formGroup]="filter" (submit)="filterResults()">
                 <mat-form-field appearance="fill">
                     <mat-label>FROM</mat-label>
-                    <input formControlName="from" matInput [matDatepicker]="from">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
-                    <mat-datepicker #from></mat-datepicker>
+                    <input formControlName="from" matInput>
+                    <mat-hint>YYYY</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
                     <mat-label>TO</mat-label>
-                    <input formControlName="to" matInput [matDatepicker]="to">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
-                    <mat-datepicker #to></mat-datepicker>
+                    <input formControlName="to" matInput>
+                    <mat-hint>YYYY</mat-hint>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>Author</mat-label>
+                    <mat-label id="authorFilter">Author</mat-label>
                     <input formControlName="author" matInput>
                 </mat-form-field>
 

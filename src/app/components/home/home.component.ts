@@ -1,9 +1,9 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
-import {Downloads} from "../../models/Downloads";
+import {Downloads} from '../../models/Downloads';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '}
   ];
 
-  //Array with download objects
+  // Array with download objects
   downloadMockData: Downloads[] = [
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
     {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''}
-  ]
+  ];
 
   aData: Authors[] = [];
   dDate: Downloads[] = [];
@@ -82,10 +82,6 @@ export class HomeComponent implements OnInit {
           };
         }
       });
-
-
-
-
   }
 
 
@@ -98,10 +94,10 @@ export class HomeComponent implements OnInit {
       res._embedded.searchResult._embedded.objects.forEach(object => {
         console.log('Title: ' + object._embedded.indexableObject.name);
         console.log('Authors: ');
-        object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
+        object._embedded.indexableObject.metadata['dc.contributor.author'].forEach(author => {
           console.log(author.value);
         });
-        console.log('Abstract: ' + object._embedded.indexableObject.metadata["dc.description.abstract"][0].value);
+        console.log('Abstract: ' + object._embedded.indexableObject.metadata['dc.description.abstract'][0].value);
       });
     });
   }
@@ -203,10 +199,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  authorClicked(link): void {
-    console.log('searching with link: ');
+  authorClicked(link, aName): void {
+    console.log('searching with link: ' );
     console.log(link);
-    this.router.navigate(['/searchResult'], {queryParams: {link: link}});
+    this.router.navigate(['/searchResult'], {queryParams: {link: link, author: aName}});
   }
 
 }

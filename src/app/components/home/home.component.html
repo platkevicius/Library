@@ -18,6 +18,7 @@
         <button id="scroll-right" class="scroll-right" (click)="clickScrollRight($event)"></button>
         <button id="scroll-left" class="scroll-left" (click)="clickScrollLeft($event)"></button>
       </div>
+      <button id="scroll-up" class="scroll-up" (click)="clickScrollUp()"></button>
 
 
 
@@ -27,6 +28,7 @@
         <h1 class = "downloaded-items-title">Most Downloaded Items</h1>
         <div class ="most-downloaded" id="downloads2" (scroll)="checkButtonVisibility2()">
           <app-downloaded-item *ngFor="let item of downloadMockData" [nameOfArticle]="item.nameOfArticle" [numberOfDownloads]="item.numberOfDownloads" [releaseDate]="item.releaseDate"></app-downloaded-item>
+
         </div>
         <button id="scroll-right-downloads" class="scroll-right" (click)="clickScrollRight($event)"></button>
         <button id="scroll-left-downloads" class="scroll-left" (click)="clickScrollLeft($event)"></button>

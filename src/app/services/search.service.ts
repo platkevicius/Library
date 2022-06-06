@@ -19,4 +19,16 @@ export class SearchService {
     return this.http.get<any>(link);
   }
 
+  searchWithFilter(query: String, author: String, from: String, to: String): Observable<any> {
+    let url = 'https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + query;
+    if (author != null && author != '') {
+      url += '&f.author=' + author + ',equals';
+    }
+    if ((from != null && from != '') && (to != null && to != '')) {
+      url += '&f.dateIssued=%5B' + from + '%20TO%' + to + '20%5D,equals';
+    }
+    url += '&configuration=default';
+    console.log('Searching using url:  ' + url);
+    return this.http.get<any>(url);
+  }
 }
