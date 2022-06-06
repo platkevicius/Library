@@ -15,24 +15,24 @@
         <div class="best-authors" id="authors" (scroll)="checkButtonVisibility()">
           <app-author-item *ngFor="let item of aData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount" [link]="item.searchLink"  (click)="authorClicked(item.searchLink)"></app-author-item>
         </div>
-        <button id="scroll-right" class="scroll-right" (click)="clickScrollRight()"></button>
-        <button id="scroll-left" class="scroll-left" (click)="clickScrollLeft()"></button>
+        <button id="scroll-right" class="scroll-right" (click)="clickScrollRight($event)"></button>
+        <button id="scroll-left" class="scroll-left" (click)="clickScrollLeft($event)"></button>
       </div>
-      <button id="scroll-up" class="scroll-up" (click)="clickScrollUp()"></button>
 
 
 
 
-      <div class = "downloaded-items-container">
+
+      <div class = "downloaded-items-container" id = "downloaded-items-container">
         <h1 class = "downloaded-items-title">Most Downloaded Items</h1>
-        <div class ="most-downloaded" id="downloads" (scroll)="checkButtonVisibility()">
-
+        <div class ="most-downloaded" id="downloads2" (scroll)="checkButtonVisibility2()">
           <app-downloaded-item *ngFor="let item of downloadMockData" [nameOfArticle]="item.nameOfArticle" [numberOfDownloads]="item.numberOfDownloads" [releaseDate]="item.releaseDate"></app-downloaded-item>
-
         </div>
+        <button id="scroll-right-downloads" class="scroll-right" (click)="clickScrollRight($event)"></button>
+        <button id="scroll-left-downloads" class="scroll-left" (click)="clickScrollLeft($event)"></button>
       </div>
 
-
+      <button id="scroll-up" class="scroll-up" (click)="clickScrollUp()"></button>
 
 
     </div>

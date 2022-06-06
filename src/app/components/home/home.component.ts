@@ -1,5 +1,5 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
   ]
 
   aData: Authors[] = [];
+  dDate: Downloads[] = [];
 
   @Input() authorLength: number = this.mockData.length;
 
@@ -75,10 +76,16 @@ export class HomeComponent implements OnInit {
         console.log(data);
 
         for (let i = 0; i < 20; i++) {
-          this.aData[i] = {name: data._embedded.values[i].label, downloadCount: 0,
-            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href};
+          this.aData[i] = {
+            name: data._embedded.values[i].label, downloadCount: 0,
+            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href
+          };
         }
       });
+
+
+
+
   }
 
 
@@ -99,21 +106,50 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  clickScrollRight(): void {
-    document.getElementById('authors').scrollBy({
-      top: 0,
-      left: 550,
-      behavior: 'smooth'
-    });
+
+  clickScrollRight(event: any): void {
+    let occuredEvent = event.target.parentElement.id
+    console.log(occuredEvent);
+
+    if (occuredEvent == 'home-authors') {
+
+      document.getElementById('authors').scrollBy({
+        top: 0,
+        left: 550,
+        behavior: 'smooth'
+      })
+
+    } else if (occuredEvent == 'downloaded-items-container') {
+      document.getElementById('downloads2').scrollBy({
+        top: 0,
+        left: 550,
+        behavior: 'smooth'
+      })
+    }
+
     this.checkButtonVisibility(550);
   }
 
-  clickScrollLeft(): void {
-    document.getElementById('authors').scrollBy({
-      top: 0,
-      left: -550,
-      behavior: 'smooth'
-    });
+  clickScrollLeft(event: any): void {
+    let occuredEvent = event.target.parentElement.id
+    console.log(occuredEvent);
+
+    if (occuredEvent == 'home-authors') {
+
+      document.getElementById('authors').scrollBy({
+        top: 0,
+        left: -550,
+        behavior: 'smooth'
+      })
+
+    } else if (occuredEvent == 'downloaded-items-container') {
+      document.getElementById('downloads2').scrollBy({
+        top: 0,
+        left: -550,
+        behavior: 'smooth'
+      })
+    }
+
     this.checkButtonVisibility(-550);
   }
 
@@ -126,14 +162,31 @@ export class HomeComponent implements OnInit {
       document.getElementById('scroll-left').style.display = 'block';
     }
 
-    if (scrollDist + scrollElem.offsetWidth + scrollingBy >= scrollElem.scrollWidth){
+    if (scrollDist + scrollElem.offsetWidth + scrollingBy >= scrollElem.scrollWidth) {
       document.getElementById('scroll-right').style.display = 'none';
     } else {
       document.getElementById('scroll-right').style.display = 'block';
     }
   }
 
-  clickScrollUp(): void  {
+  checkButtonVisibility2(scrollingBy = 0): void {
+    const scrollElem = document.getElementById('downloads2');
+    const scrollDist = scrollElem.scrollLeft;
+    if (scrollDist + scrollingBy <= 0) {
+      document.getElementById('scroll-left-downloads').style.display = 'none';
+    } else {
+      document.getElementById('scroll-left-downloads').style.display = 'block';
+    }
+
+    if (scrollDist + scrollElem.offsetWidth + scrollingBy >= scrollElem.scrollWidth) {
+      document.getElementById('scroll-right-downloads').style.display = 'none';
+    } else {
+      document.getElementById('scroll-right-downloads').style.display = 'block';
+    }
+  }
+
+
+  clickScrollUp(): void {
     window.scrollTo({
       top: 0,
       left: 0,
@@ -151,7 +204,7 @@ export class HomeComponent implements OnInit {
   }
 
   authorClicked(link): void {
-    console.log('searching with link: ' );
+    console.log('searching with link: ');
     console.log(link);
     this.router.navigate(['/searchResult'], {queryParams: {link: link}});
   }
