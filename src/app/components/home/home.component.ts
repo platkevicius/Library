@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
+import {Downloads} from "../../models/Downloads";
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,29 @@ export class HomeComponent implements OnInit {
     {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
     {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '}
   ];
+
+  //Array with download objects
+  downloadMockData: Downloads[] = [
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
+    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''}
+  ]
 
   aData: Authors[] = [];
 
@@ -126,8 +150,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  authorClicked(link): void {
-    this.router.navigate(['/searchResult']);
+  authorClicked(link, aName): void {
+    console.log('searching with link: ' );
+    console.log(link);
+    this.router.navigate(['/searchResult'], {queryParams: {link: link, author: aName}});
   }
 
 }

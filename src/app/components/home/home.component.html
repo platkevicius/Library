@@ -13,11 +13,30 @@
       <div class="authors-container" id="home-authors">
         <h1 class="authors-title">Best Authors:</h1>
         <div class="best-authors" id="authors" (scroll)="checkButtonVisibility()">
-          <app-author-item *ngFor="let item of aData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount" [link]="item.searchLink"  (click)="authorClicked(item.searchLink)"></app-author-item>
+          <app-author-item *ngFor="let item of aData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount" [link]="item.searchLink"  (click)="authorClicked(item.searchLink, item.name)"></app-author-item>
         </div>
         <button id="scroll-right" class="scroll-right" (click)="clickScrollRight()"></button>
         <button id="scroll-left" class="scroll-left" (click)="clickScrollLeft()"></button>
       </div>
       <button id="scroll-up" class="scroll-up" (click)="clickScrollUp()"></button>
+
+
+
+
+      <div class = "downloaded-items-container">
+        <h1 class = "downloaded-items-title">Most Downloaded Items</h1>
+        <div class ="most-downloaded" id="downloads" (scroll)="checkButtonVisibility()">
+
+          <app-downloaded-item *ngFor="let item of downloadMockData" [nameOfArticle]="item.nameOfArticle" [numberOfDownloads]="item.numberOfDownloads" [releaseDate]="item.releaseDate"></app-downloaded-item>
+
+        </div>
+      </div>
+
+
+
+
     </div>
+
+
+
 </div>

@@ -8,7 +8,7 @@
 </form>
 
 <div class="container">
-    <div class="Search-Result">
+    <div id="search-result" class="Search-Result">
         <app-search-result-item *ngFor="let item of pageSlice" [title]="item.dcTitle" [authors]="item.dcCreator" [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
     </div>
     <div class="Filter">
@@ -33,7 +33,7 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                    <mat-label>Author</mat-label>
+                    <mat-label id="authorFilter">Author</mat-label>
                     <input formControlName="author" matInput>
                 </mat-form-field>
 
