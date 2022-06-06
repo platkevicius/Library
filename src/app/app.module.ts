@@ -24,6 +24,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthorItemComponent } from './components/home/author-item/author-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DownloadedItemComponent } from './components/home/downloaded-item/downloaded-item.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchResultItemComponent,
     SpinnerOverlayComponent,
     FooterComponent,
-    AuthorItemComponent
+    AuthorItemComponent,
+    DownloadedItemComponent
   ],
   imports: [
     BrowserModule,

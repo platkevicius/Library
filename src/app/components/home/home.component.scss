@@ -49,10 +49,19 @@
           position: absolute;
           background: black;
           //height: 30vh;
-          height: 250px;
+          height: 300px;
           width: 100%;
           top: 30%;
         }
+
+      .downloaded-items-container{
+        position: absolute;
+        background: black;
+        //height: 30vh;
+        height: 300px;
+        width: 100%;
+        top: 50%;
+      }
 
         .authors-title {
           height: 10%;
@@ -60,6 +69,13 @@
           color : white;
           text-align: left;
         }
+
+      .downloaded-items-title{
+        height: 10%;
+        padding: 1%;
+        color : white;
+        text-align: left;
+      }
 
         .best-authors {
           position: absolute;
@@ -76,6 +92,22 @@
             display: none
           }
         }
+
+      .most-downloaded{
+        position: absolute;
+        background: black;
+        border: 1px solid black;
+        height: 80%;
+        width: 97%;
+        left: 1.5%;
+        top: 18%;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        &::-webkit-scrollbar {
+          display: none
+        }
+      }
 
         .scroll-right {
           position: absolute;
