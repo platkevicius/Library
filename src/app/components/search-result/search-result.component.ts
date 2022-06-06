@@ -10,7 +10,7 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit, AfterViewChecked {
+export class SearchResultComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -46,14 +46,6 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
       this.fixed = false;
     }
 
-  ngAfterViewChecked():void {
-    if (!this.fixed) {
-      console.log('test');
-      this.paginator.lastPage();
-      this.paginator.firstPage();
-    }
-  }
-
   onSubmit(): void {
     // TODO: add rest call for getting data
     this.mockData = [];
@@ -83,9 +75,10 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
         this.mockData[counter] = item;
         counter++;
       });
+    
+      this.pageSlice = this.mockData.slice(0, this.paginator.pageSize);
     });
-
-    this.pageSlice = this.mockData.slice(0, 5);
+    
   }
 
   linkSearch(): void {
@@ -123,9 +116,9 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
         this.mockData[counter] = item;
         counter++;
       });
-    });
 
-    this.pageSlice = this.mockData.slice(0, 5);
+      this.pageSlice = this.mockData.slice(0, this.paginator.pageSize);
+    });
   }
 
   filterResults(): void {
@@ -133,7 +126,6 @@ export class SearchResultComponent implements OnInit, AfterViewChecked {
   }
 
   OnPageChange(event: PageEvent): void {
-    this.fixed = true;
     console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;

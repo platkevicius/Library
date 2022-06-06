@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
 
         for (let i = 0; i < 20; i++) {
           this.aData[i] = {name: data._embedded.values[i].label, downloadCount: 0,
-            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href};
+            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search};
         }
       });
   }
@@ -69,28 +69,28 @@ export class HomeComponent implements OnInit {
         console.log('Authors: ');
         object._embedded.indexableObject.metadata["dc.contributor.author"].forEach(author => {
           console.log(author.value);
-        });
+        })
         console.log('Abstract: ' + object._embedded.indexableObject.metadata["dc.description.abstract"][0].value);
-      });
+      })
     });
   }
 
   clickScrollRight(): void {
     document.getElementById('authors').scrollBy({
       top: 0,
-      left: 550,
+      left: 500,
       behavior: 'smooth'
     });
-    this.checkButtonVisibility(550);
+    this.checkButtonVisibility(500);
   }
 
   clickScrollLeft(): void {
     document.getElementById('authors').scrollBy({
       top: 0,
-      left: -550,
+      left: -500,
       behavior: 'smooth'
     });
-    this.checkButtonVisibility(-550);
+    this.checkButtonVisibility(-500);
   }
 
   checkButtonVisibility(scrollingBy = 0): void {
@@ -127,9 +127,7 @@ export class HomeComponent implements OnInit {
   }
 
   authorClicked(link): void {
-    console.log('searching with link: ' );
-    console.log(link);
-    this.router.navigate(['/searchResult'], {queryParams: {link: link}});
+    this.router.navigate(['/searchResult']);
   }
 
 }
