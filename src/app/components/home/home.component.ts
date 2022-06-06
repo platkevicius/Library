@@ -82,6 +82,23 @@ export class HomeComponent implements OnInit {
           };
         }
       });
+
+    this.getMostDownloadad();
+
+  }
+
+  getMostDownloadad() {
+    this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/facets/dateIssued').subscribe(
+      response => {
+        console.log(response);
+
+        /**for (let i = 0; i < 20; i++) {
+          this.dDate[i] = {
+            nameOfArticle: response.name,
+          }
+        }*/
+      }
+    );
   }
 
 
