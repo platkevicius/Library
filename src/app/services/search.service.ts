@@ -20,7 +20,14 @@ export class SearchService {
   }
 
   searchWithFilter(query: String, author: String): Observable<any> {
-    return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query='
-      + query + '&author=' + author + '&configuration=default');
+    let url = '';
+    if (author == null || author == '') {
+      url = 'https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + query + '&configuration=default';
+    } else {
+      url = 'https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query='
+        + query + '&f.author=' + author + ',equals&configuration=default';
+    }
+    console.log('Searching using url:  ' + url);
+    return this.http.get<any>(url);
   }
 }
