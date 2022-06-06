@@ -75,6 +75,12 @@ export class SearchResultComponent implements OnInit {
           item.dcDescription = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
         }
 
+        if (object._embedded.indexableObject.metadata["dc.date.issued"] != null) {
+          item.dcDate = object._embedded.indexableObject.metadata["dc.date.issued"][0].value;
+        } else {
+          item.dcDate = '9999';
+        }
+
         this.mockData[counter] = item;
         counter++;
       });
