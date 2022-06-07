@@ -1,6 +1,9 @@
 export interface Downloads {
-  nameOfArticle: String;
+  /**nameOfArticle: String;
   numberOfDownloads: number;
   releaseDate: number;
-  searchLink: String;
+  searchLink: String;*/
+
+  nameOfArticle: String
+  //dateIssued: String
 }

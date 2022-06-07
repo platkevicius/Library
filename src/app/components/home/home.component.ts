@@ -1,5 +1,5 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
@@ -36,30 +36,36 @@ export class HomeComponent implements OnInit {
   ];
 
   // Array with download objects
-  downloadMockData: Downloads[] = [
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''},
-    {nameOfArticle: 'How to Angular', numberOfDownloads: 81, releaseDate: 11, searchLink: ''}
-  ];
+  /*downloadMockData: Downloads[] = [
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
+    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'}
+  ];*/
 
   aData: Authors[] = [];
-  dDate: Downloads[] = [];
+  dData: Downloads[] = [];
 
   @Input() authorLength: number = this.mockData.length;
 
@@ -70,6 +76,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Get data for authors
     this.http
       .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/facets/author', {})
       .subscribe(data => {
@@ -83,23 +90,25 @@ export class HomeComponent implements OnInit {
         }
       });
 
-    this.getMostDownloadad();
-
-  }
-
-  getMostDownloadad() {
-    this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/facets/dateIssued').subscribe(
-      response => {
+    // Get data for article names
+    this.http
+      .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects', {})
+      .subscribe(response => {
         console.log(response);
 
-        /**for (let i = 0; i < 20; i++) {
-          this.dDate[i] = {
-            nameOfArticle: response.name,
-          }
-        }*/
-      }
-    );
+        for (let i = 0; i < 20; i++) {
+          console.log(response._embedded.searchResult._embedded.objects[i]._embedded.indexableObject.name)
+          this.dData[i] = {
+            nameOfArticle: response._embedded.searchResult._embedded.objects[i]._embedded.indexableObject.name
+          };
+        }
+      });
+
+
+
+
   }
+
 
 
   onSubmit(): void {
@@ -217,7 +226,7 @@ export class HomeComponent implements OnInit {
   }
 
   authorClicked(link, aName): void {
-    console.log('searching with link: ' );
+    console.log('searching with link: ');
     console.log(link);
     this.router.navigate(['/searchResult'], {queryParams: {link: link, author: aName}});
   }

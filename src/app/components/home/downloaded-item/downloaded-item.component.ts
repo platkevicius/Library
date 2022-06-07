@@ -8,11 +8,15 @@ import {Component, Input, OnInit} from '@angular/core';
 export class DownloadedItemComponent implements OnInit {
 
 //@Input let's this data be updated by the parent component
-  @Input() nameOfArticle: String
-  @Input() numberOfDownloads: number
-  @Input() releaseDate: number
+  /**
+   @Input() numberOfDownloads: number
+   @Input() releaseDate: number*/
 
-  constructor() { }
+  @Input() dateIssued: String
+  @Input() nameOfArticle: String
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
