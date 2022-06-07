@@ -5,6 +5,7 @@
     .container {
         position: relative;
         height: 100%;
+        background-color: black;
 
         input {
             color: white;
@@ -58,7 +59,7 @@
         position: absolute;
         background: black;
         //height: 30vh;
-        height: 300px;
+        height: 400px;
         width: 100%;
         top: 50%;
       }
@@ -97,8 +98,8 @@
         position: absolute;
         background: black;
         border: 1px solid black;
-        height: 80%;
-        width: 97%;
+        height: 100%;
+        width: 100vw;
         left: 1.5%;
         top: 18%;
         overflow-x: scroll;

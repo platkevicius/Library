@@ -25,7 +25,7 @@
 
 
       <div class = "downloaded-items-container" id = "downloaded-items-container">
-        <h1 class = "downloaded-items-title">Most Downloaded Items</h1>
+        <h1 class = "downloaded-items-title">Articles that might interest you:</h1>
         <div class ="most-downloaded" id="downloads2" (scroll)="checkButtonVisibility2()">
           <app-downloaded-item *ngFor="let item of dData" [nameOfArticle]="item.nameOfArticle" ></app-downloaded-item>
 
