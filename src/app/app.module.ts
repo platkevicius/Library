@@ -25,6 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthorItemComponent } from './components/home/author-item/author-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DownloadedItemComponent } from './components/home/downloaded-item/downloaded-item.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -38,23 +39,24 @@ import { DownloadedItemComponent } from './components/home/downloaded-item/downl
     AuthorItemComponent,
     DownloadedItemComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    HttpClientModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    OverlayModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatInputModule,
+        HttpClientModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        OverlayModule,
+        MatCardModule,
+        MatPaginatorModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: SpinnerInterceptor,

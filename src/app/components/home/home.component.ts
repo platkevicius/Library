@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
 import {Downloads} from '../../models/Downloads';
+import {ModeService} from "../../services/mode.service";
 
 @Component({
   selector: 'app-home',
@@ -12,103 +13,46 @@ import {Downloads} from '../../models/Downloads';
 })
 export class HomeComponent implements OnInit {
 
-  mockData: Authors[] = [
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '},
-    {name: 'Louis Niederloehner', downloadCount: 49, publicationCount: 6, searchLink: ' '}
-  ];
-
-  // Array with download objects
-  /*downloadMockData: Downloads[] = [
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'},
-    {nameOfArticle: 'How to Angular', dateIssued: '12-12-2012'}
-  ];*/
-
   aData: Authors[] = [];
   dData: Downloads[] = [];
 
-  @Input() authorLength: number = this.mockData.length;
-
   query: string;
 
-  constructor(private searchService: SearchService, private router: Router, private http: HttpClient) {
+  constructor(protected modeService: ModeService, private searchService: SearchService, private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
 
-    // Get data for authors
-    this.http
-      .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/facets/author', {})
-      .subscribe(data => {
-        console.log(data);
+    this.modeService.toggleMode.subscribe(
+      (mode) => {
+        this.setMode(mode);
+      }
+    );
 
-        for (let i = 0; i < 20; i++) {
-          this.aData[i] = {
-            name: data._embedded.values[i].label, downloadCount: 0,
-            publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href
-          };
-        }
-      });
+    // Get data for authors
+
+    this.searchService.loadAuthors().subscribe(data => {
+      console.log(data);
+      for (let i = 0; i < 20; i++) {
+        this.aData[i] = {
+          name: data._embedded.values[i].label, downloadCount: 0,
+          publicationCount: data._embedded.values[i].count, searchLink: data._embedded.values[i]._links.search.href
+        };
+      }
+    });
 
     // Get data for article names
     this.http
       .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects', {})
       .subscribe(response => {
         console.log(response);
-
         for (let i = 0; i < 20; i++) {
-          console.log(response._embedded.searchResult._embedded.objects[i]._embedded.indexableObject.name)
           this.dData[i] = {
             nameOfArticle: response._embedded.searchResult._embedded.objects[i]._embedded.indexableObject.name
           };
         }
       });
-
-
-
-
   }
-
 
 
   onSubmit(): void {
@@ -130,46 +74,46 @@ export class HomeComponent implements OnInit {
 
 
   clickScrollRight(event: any): void {
-    let occuredEvent = event.target.parentElement.id
+    const occuredEvent = event.target.parentElement.id;
     console.log(occuredEvent);
 
-    if (occuredEvent == 'home-authors') {
+    if (occuredEvent === 'home-authors') {
 
       document.getElementById('authors').scrollBy({
         top: 0,
         left: 550,
         behavior: 'smooth'
-      })
+      });
 
-    } else if (occuredEvent == 'downloaded-items-container') {
+    } else if (occuredEvent === 'downloaded-items-container') {
       document.getElementById('downloads2').scrollBy({
         top: 0,
         left: 550,
         behavior: 'smooth'
-      })
+      });
     }
 
     this.checkButtonVisibility(550);
   }
 
   clickScrollLeft(event: any): void {
-    let occuredEvent = event.target.parentElement.id
+    const occuredEvent = event.target.parentElement.id;
     console.log(occuredEvent);
 
-    if (occuredEvent == 'home-authors') {
+    if (occuredEvent === 'home-authors') {
 
       document.getElementById('authors').scrollBy({
         top: 0,
         left: -550,
         behavior: 'smooth'
-      })
+      });
 
-    } else if (occuredEvent == 'downloaded-items-container') {
+    } else if (occuredEvent === 'downloaded-items-container') {
       document.getElementById('downloads2').scrollBy({
         top: 0,
         left: -550,
         behavior: 'smooth'
-      })
+      });
     }
 
     this.checkButtonVisibility(-550);
@@ -225,10 +169,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  authorClicked(link, aName): void {
-    console.log('searching with link: ');
-    console.log(link);
-    this.router.navigate(['/searchResult'], {queryParams: {link: link, author: aName}});
+  authorClicked(aName): void {
+    this.router.navigate(['/searchResult'], {queryParams: {author: aName}});
+  }
+
+  setMode(mode: boolean): void {
+    console.log('Toggle lightMode in HomeComponent: ' + mode);
+    document.getElementById('container').style.backgroundColor = mode ? 'white' : 'rgb(73, 69, 69)';
+    document.getElementById('background').style.background = mode ?  'url("../../../assets/background-search-light2.jpg")' : 'url("../../../assets/background-serach.jpg")';
+    document.getElementById('background').style.backgroundSize = '100%';
   }
 
 }

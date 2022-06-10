@@ -25,7 +25,6 @@ export class SearchResultComponent implements OnInit {
   });
 
   query: string;
-  link: string;
   author: string;
   from: string;
   to: string;
@@ -36,14 +35,15 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
       this.query = this.route.snapshot.queryParamMap.get('query');
-      this.link = this.route.snapshot.queryParamMap.get('link');
       this.author = this.route.snapshot.queryParamMap.get('author');
 
-      if ((this.author != null && this.author != '') || (this.query != null && this.query != '')) {
+      console.log(this.author);
+
+      if ((this.author != null && this.author !== '') || (this.query != null && this.query !== '')) {
         this.onSubmit();
       }
 
-      if (this.author !== null) {
+      if (this.author != null || this.author !== '') {
         this.filter.patchValue({author: this.author});
       }
       this.fixed = false;
@@ -55,8 +55,6 @@ export class SearchResultComponent implements OnInit {
     let counter = 0;
     this.searchService.searchWithFilter(this.query, this.author, this.from, this.to).subscribe(res => {
       if (res == null) { return; }
-
-      console.log(res._embedded.searchResult._embedded.objects);
       res._embedded.searchResult._embedded.objects.forEach(object => {
         const item = new SearchResponse();
         item.dcTitle = object._embedded.indexableObject.name;
@@ -75,8 +73,8 @@ export class SearchResultComponent implements OnInit {
           item.dcDescription = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
         }
 
-        if (object._embedded.indexableObject.metadata["dc.date.issued"] != null) {
-          item.dcDate = object._embedded.indexableObject.metadata["dc.date.issued"][0].value;
+        if (object._embedded.indexableObject.metadata['dc.date.issued'] != null) {
+          item.dcDate = object._embedded.indexableObject.metadata['dc.date.issued'][0].value;
         } else {
           item.dcDate = '9999';
         }
@@ -95,6 +93,7 @@ export class SearchResultComponent implements OnInit {
     this.author = this.filter.controls.author.value;
     this.from = this.filter.controls.from.value;
     this.to = this.filter.controls.to.value;
+    this.onSubmit();
   }
 
   OnPageChange(event: PageEvent): void {

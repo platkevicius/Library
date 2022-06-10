@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {ViewportScroller} from '@angular/common';
 import {Router} from '@angular/router';
+import {ModeService} from '../../services/mode.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,20 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  @Output() mode = new EventEmitter<string>();
+
+  lightMode = false;
+
+  constructor(private modeService: ModeService, private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  onChangeToggle(): void {
+    this.lightMode = !this.lightMode;
+    this.modeService.setLightMode(this.lightMode);
+  }
+
 
   onClickScroll(elementId: string): void {
     if (window.location.pathname === '/') {
@@ -24,6 +35,5 @@ export class HeaderComponent implements OnInit {
       );
     }
   }
-
 
 }

@@ -2,13 +2,21 @@
 
 .author {
 
-  margin: 10px;
+  margin: 20px;
+  padding: 5%;
 
   cursor: pointer;
   width: 150px;
   height: 70%;
 
-  #description {
-    color: gray;
+  .pContainer {
+    position: absolute;
+    top: 40%;
+    width: 90%;
+  }
+
+  #publications {
+    color: white;
+    font-size: xx-large;
   }
 }

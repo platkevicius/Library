@@ -5,7 +5,7 @@
     .container {
         position: relative;
         height: 100%;
-        background-color: black;
+        background-color: rgb(73, 69, 69);
 
         input {
             color: white;
@@ -48,50 +48,50 @@
 
         .authors-container {
           position: absolute;
+          background: lightgrey;
+          //height: 30vh;
+          height: 300px;
+          width: 100%;
+          top: 40%;
+          text-align: center;
+        }
+
+        .downloaded-items-container{
+          position: absolute;
           background: black;
           //height: 30vh;
           height: 300px;
           width: 100%;
-          top: 30%;
+          top: 65%;
         }
-
-      .downloaded-items-container{
-        position: absolute;
-        background: black;
-        //height: 30vh;
-        height: 400px;
-        width: 100%;
-        top: 50%;
-      }
 
         .authors-title {
           height: 10%;
           padding: 1%;
-          color : white;
-          text-align: left;
+          color : black;
+          font-weight: bold;
         }
 
-      .downloaded-items-title{
-        height: 10%;
-        padding: 1%;
-        color : white;
-        text-align: left;
+      .best-authors {
+        position: absolute;
+        background: lightgrey;
+        height: 80%;
+        width: 97%;
+        left: 1.5%;
+        top: 18%;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        &::-webkit-scrollbar {
+          display: none
+        }
       }
 
-        .best-authors {
-          position: absolute;
-          background: black;
-          border: 1px solid black;
-          height: 80%;
-          width: 97%;
-          left: 1.5%;
-          top: 18%;
-          overflow-x: scroll;
-          display: flex;
-          flex-direction: row;
-          &::-webkit-scrollbar {
-            display: none
-          }
+      .downloaded-items-title{
+          height: 10%;
+          padding: 1%;
+          color : white;
+          text-align: left;
         }
 
       .most-downloaded{
