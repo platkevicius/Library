@@ -1,4 +1,9 @@
-.container {  
+.color {
+  background-color: rgb(36, 32, 32);
+}
+
+.container {
+    min-height: 80vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -11,10 +16,15 @@
   }
 
   .Search-Result { grid-area: Search-Result; }
-  
-  .Filter { 
-    grid-area: Filter; 
-    
+
+  //.Fcolor {
+  //  background-color: dimgrey;
+  //  border-radius: 5%;
+  //}
+
+  .Filter {
+    grid-area: Filter;
+
     h1 {
       color : white;
       text-align: center;
@@ -33,19 +43,20 @@
       mat-form-field {
         margin: 10px;
         width: 250px;
+        //background-color: grey;
       }
     }
 
     input {
-       color: white;
+       //color: white;
     }
 
   }
 
-.bar {           
-    color: white;
+.bar {
+
     margin-top: 15px;
-    
+
     width: 60%;
     left: 20%;
     top: 30%;

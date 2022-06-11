@@ -1,5 +1,6 @@
 .home {
   width: 100%;
+  overflow-x: hidden;
 
   .container {
 
@@ -76,7 +77,7 @@
       background: black;
       //height: 30vh;
       height: 300px;
-      width: 99vw;
+      width: 100vw;
       //top: 40%;
       text-align: center;
 
@@ -97,7 +98,7 @@
         background: black;
         height: 70%;
         width: 97%;
-        left: 1.5%;
+        left: 1%;
         overflow-x: scroll;
         display: flex;
         flex-direction: row;
@@ -114,7 +115,7 @@
 
       #scroll-left {
         position: absolute;
-        left: 2%;
+        left: 1%;
         top: 45%;
       }
     }
@@ -127,7 +128,7 @@
       background: black;
       //height: 30vh;
       height: 300px;
-      width: 99vw;
+      width: 100vw;
       position: relative;
 
       .downloaded-items-title {
@@ -144,7 +145,7 @@
         background: black;
         height: 70%;
         width: 97%;
-        left: 1.5%;
+        left: 1%;
         overflow-x: scroll;
         display: flex;
         flex-direction: row;
@@ -161,7 +162,7 @@
 
       #scroll-left-downloads {
         position: absolute;
-        left: 2%;
+        left: 1%;
         top: 50%;
       }
     }

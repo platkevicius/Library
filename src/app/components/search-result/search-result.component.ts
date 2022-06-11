@@ -1,9 +1,10 @@
-import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { ActivatedRoute } from '@angular/router';
-import { SearchResponse } from 'src/app/models/SearchResponse';
-import { SearchService } from 'src/app/services/search.service';
+import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, NgForm} from '@angular/forms';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {ActivatedRoute} from '@angular/router';
+import {SearchResponse} from 'src/app/models/SearchResponse';
+import {SearchService} from 'src/app/services/search.service';
+import {ModeService} from "../../services/mode.service";
 
 @Component({
   selector: 'app-search-result',
@@ -31,34 +32,40 @@ export class SearchResultComponent implements OnInit {
 
   fixed: boolean;
 
-  constructor(private searchService: SearchService, private route: ActivatedRoute) { }
+  constructor(protected modeService: ModeService, private searchService: SearchService, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-      this.query = this.route.snapshot.queryParamMap.get('query');
-      this.author = this.route.snapshot.queryParamMap.get('author');
-
-      console.log(this.author);
-
-      if ((this.author != null && this.author !== '') || (this.query != null && this.query !== '')) {
-        this.onSubmit();
+    this.modeService.toggleMode.subscribe(
+      (mode) => {
+        this.setMode(mode);
       }
+    );
 
-      if (this.author != null || this.author !== '') {
-        this.filter.patchValue({author: this.author});
-      }
-      this.fixed = false;
+    this.query = this.route.snapshot.queryParamMap.get('query');
+    this.author = this.route.snapshot.queryParamMap.get('author');
+
+    if ((this.author != null && this.author !== '') || (this.query != null && this.query !== '')) {
+      this.onSubmit();
     }
+
+    if (this.author != null || this.author !== '') {
+      this.filter.patchValue({author: this.author});
+    }
+    this.fixed = false;
+  }
 
   onSubmit(): void {
     // TODO: add rest call for getting data
     this.mockData = [];
     let counter = 0;
     this.searchService.searchWithFilter(this.query, this.author, this.from, this.to).subscribe(res => {
-      if (res == null) { return; }
+      if (res == null) {
+        return;
+      }
       res._embedded.searchResult._embedded.objects.forEach(object => {
         const item = new SearchResponse();
         item.dcTitle = object._embedded.indexableObject.name;
-
         item.dcCreator = '';
         if (object._embedded.indexableObject.metadata['dc.contributor.author'] != null) {
           object._embedded.indexableObject.metadata['dc.contributor.author'].forEach(author => {
@@ -68,9 +75,8 @@ export class SearchResultComponent implements OnInit {
 
         if (object._embedded.indexableObject.metadata['dc.description.abstract'] != null) {
           item.dcDescription = object._embedded.indexableObject.metadata['dc.description.abstract'][0].value;
-        }
-        else {
-          item.dcDescription = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+        } else {
+          item.dcDescription = 'No description available';
         }
 
         if (object._embedded.indexableObject.metadata['dc.date.issued'] != null) {
@@ -97,7 +103,12 @@ export class SearchResultComponent implements OnInit {
   }
 
   OnPageChange(event: PageEvent): void {
-    console.log(event);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
 
@@ -108,4 +119,14 @@ export class SearchResultComponent implements OnInit {
     this.pageSlice = this.mockData.slice(startIndex, endIndex);
   }
 
+  private setMode(mode): void {
+    console.log('Toggle lightMode in SearchComponent: ' + mode);
+
+    try {
+      console.log('Toggle lightMode in HomeComponent: ' + mode);
+      document.getElementById('color').style.backgroundColor = mode ? 'lightgrey' : 'rgb(36, 32, 32)';
+    } catch (e) {
+      console.log('Could not set mode in HomeComponent');
+    }
+  }
 }
