@@ -1,5 +1,7 @@
 <div class="home" id="home">
+
     <div class="container" id="container">
+      <div class="search">
         <div class="logo"></div>
         <div class="background" id="background"></div>
         <form #form="ngForm" (submit)="onSubmit()">
@@ -10,28 +12,24 @@
 
             <button type="submit" hidden #btn></button>
         </form>
+      </div>
+
       <div class="authors-container" id="home-authors">
         <h1 class="authors-title" id="authors-title">Best Authors:</h1>
         <div class="best-authors" id="authors" (scroll)="checkButtonVisibility()">
           <app-author-item *ngFor="let item of aData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount" [link]="item.searchLink"  (click)="authorClicked(item.name)"></app-author-item>
         </div>
-        <button id="scroll-right" class="scroll-right" (click)="clickScrollRight($event)"></button>
         <button id="scroll-left" class="scroll-left" (click)="clickScrollLeft($event)"></button>
+        <button id="scroll-right" class="scroll-right" (click)="clickScrollRight($event)"></button>
       </div>
-
-
-
-
-
 
       <div class = "downloaded-items-container" id = "downloaded-items-container">
         <h1 class = "downloaded-items-title" id="downloaded-items-title">Articles that might interest you:</h1>
         <div class ="most-downloaded" id="downloads2" (scroll)="checkButtonVisibility2()">
           <app-downloaded-item *ngFor="let item of dData" [nameOfArticle]="item.nameOfArticle" ></app-downloaded-item>
-
         </div>
-        <button id="scroll-right-downloads" class="scroll-right" (click)="clickScrollRight($event)"></button>
         <button id="scroll-left-downloads" class="scroll-left" (click)="clickScrollLeft($event)"></button>
+        <button id="scroll-right-downloads" class="scroll-right" (click)="clickScrollRight($event)"></button>
       </div>
 
       <button id="scroll-up" class="scroll-up" (click)="clickScrollUp()"></button>
