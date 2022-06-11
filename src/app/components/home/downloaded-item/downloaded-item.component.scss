@@ -2,11 +2,17 @@
 
 .download {
 
+
+
   margin: 10px;
 
   cursor: pointer;
   width: 200px;
   height: 70%;
+
+  mat-card-title {
+    font-size: medium;
+  }
 
   #description {
     color: gray;

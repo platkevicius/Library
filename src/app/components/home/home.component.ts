@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
 import {Authors} from '../../models/Authors';
 import {Downloads} from '../../models/Downloads';
-import {ModeService} from "../../services/mode.service";
+import {ModeService} from '../../services/mode.service';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
     // Get data for article names
     this.http
-      .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects', {})
+      .get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=null&configuration=default', {})
       .subscribe(response => {
         console.log(response);
         for (let i = 0; i < 20; i++) {
@@ -84,6 +84,7 @@ export class HomeComponent implements OnInit {
         left: 550,
         behavior: 'smooth'
       });
+      this.checkButtonVisibility(550);
 
     } else if (occuredEvent === 'downloaded-items-container') {
       document.getElementById('downloads2').scrollBy({
@@ -91,9 +92,8 @@ export class HomeComponent implements OnInit {
         left: 550,
         behavior: 'smooth'
       });
+      this.checkButtonVisibility2(550);
     }
-
-    this.checkButtonVisibility(550);
   }
 
   clickScrollLeft(event: any): void {
@@ -108,15 +108,17 @@ export class HomeComponent implements OnInit {
         behavior: 'smooth'
       });
 
+      this.checkButtonVisibility(-550);
     } else if (occuredEvent === 'downloaded-items-container') {
       document.getElementById('downloads2').scrollBy({
         top: 0,
         left: -550,
         behavior: 'smooth'
       });
+      this.checkButtonVisibility2(-550);
     }
 
-    this.checkButtonVisibility(-550);
+
   }
 
   checkButtonVisibility(scrollingBy = 0): void {
@@ -178,6 +180,12 @@ export class HomeComponent implements OnInit {
     document.getElementById('container').style.backgroundColor = mode ? 'white' : 'rgb(73, 69, 69)';
     document.getElementById('background').style.background = mode ?  'url("../../../assets/background-search-light2.jpg")' : 'url("../../../assets/background-serach.jpg")';
     document.getElementById('background').style.backgroundSize = '100%';
+    document.getElementById('home-authors').style.backgroundColor = mode ? 'lightgrey' : 'black';
+    document.getElementById('authors').style.backgroundColor = mode ? 'lightgrey' : 'black';
+    document.getElementById('authors-title').style.color = mode ? 'black' : 'white';
+    document.getElementById('downloaded-items-container').style.backgroundColor = mode ? 'lightgrey' : 'black';
+    document.getElementById('downloads2').style.backgroundColor = mode ? 'lightgrey' : 'black';
+    document.getElementById('downloaded-items-title').style.color = mode ? 'black' : 'white';
   }
 
 }

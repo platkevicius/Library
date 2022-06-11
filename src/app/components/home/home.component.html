@@ -3,15 +3,15 @@
         <div class="logo"></div>
         <div class="background" id="background"></div>
         <form #form="ngForm" (submit)="onSubmit()">
-            <mat-form-field class="bar" appearance="outline">
+            <mat-form-field class="bar" appearance="outline" color="accent">
                 <mat-label>SEARCH</mat-label>
-                <input type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
+                <input id="input" type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
             </mat-form-field>
 
             <button type="submit" hidden #btn></button>
         </form>
       <div class="authors-container" id="home-authors">
-        <h1 class="authors-title">Best Authors:</h1>
+        <h1 class="authors-title" id="authors-title">Best Authors:</h1>
         <div class="best-authors" id="authors" (scroll)="checkButtonVisibility()">
           <app-author-item *ngFor="let item of aData" [name]="item.name" [downloads]="item.downloadCount" [publications]="item.publicationCount" [link]="item.searchLink"  (click)="authorClicked(item.name)"></app-author-item>
         </div>
@@ -25,7 +25,7 @@
 
 
       <div class = "downloaded-items-container" id = "downloaded-items-container">
-        <h1 class = "downloaded-items-title">Articles that might interest you:</h1>
+        <h1 class = "downloaded-items-title" id="downloaded-items-title">Articles that might interest you:</h1>
         <div class ="most-downloaded" id="downloads2" (scroll)="checkButtonVisibility2()">
           <app-downloaded-item *ngFor="let item of dData" [nameOfArticle]="item.nameOfArticle" ></app-downloaded-item>
 
