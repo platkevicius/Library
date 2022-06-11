@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit {
     try {
       console.log('Toggle lightMode in HomeComponent: ' + mode);
       document.getElementById('container').style.backgroundColor = mode ? 'white' : 'rgb(73, 69, 69)';
-      document.getElementById('background').style.background = mode ? 'url("../../../assets/background-search-light2.jpg")' : 'url("../../../assets/background-serach.jpg")';
+      document.getElementById('background').style.background = mode ? 'url("../../../assets/background-search-light2.jpg") no-repeat' : 'url("../../../assets/background-serach.jpg") no repeat';
       document.getElementById('background').style.backgroundSize = '100%';
       document.getElementById('home-authors').style.backgroundColor = mode ? 'lightgrey' : 'black';
       document.getElementById('authors').style.backgroundColor = mode ? 'lightgrey' : 'black';
