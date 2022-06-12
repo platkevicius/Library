@@ -4,6 +4,19 @@
 
   .container {
 
+    .background {
+      position: absolute;
+
+      height: 100%;
+      width: 100%;
+      //top: 20vh;
+
+      background-blend-mode: multiply;
+      background-size: contain;
+      background: url('../../../assets/background-serach.jpg') no-repeat;
+      background-size: 100%;
+    }
+
     display: grid;
     grid-template-rows: 6fr 1fr 3fr 1fr 3fr 1fr;
     grid-auto-flow: row;
@@ -35,18 +48,6 @@
     }
 
 
-    .background {
-      position: absolute;
-
-      height: 70%;
-      width: 100%;
-      top: 15%;
-
-      background-blend-mode: multiply;
-      background-size: contain;
-      background: url('../../../assets/background-serach.jpg') no-repeat;
-      background-size: 100%;
-    }
 
     .logo {
       position: relative;
