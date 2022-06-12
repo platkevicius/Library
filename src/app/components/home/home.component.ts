@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
   query: string;
 
+  mode = false;
+
   constructor(protected modeService: ModeService, private searchService: SearchService, private router: Router, private http: HttpClient) {
   }
 
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Query: ' + this.query);
-    this.router.navigate(['/searchResult'], {queryParams: {query: this.query}});
+    this.router.navigate(['/searchResult'], {queryParams: {query: this.query, mode: this.mode}});
     // TODO: add rest call for getting data and pass the data to the serach result component
     this.searchService.searchByQuery('mathematics').subscribe(res => {
       console.log(res._embedded.searchResult._embedded);
@@ -175,6 +177,7 @@ export class HomeComponent implements OnInit {
   }
 
   setMode(mode: boolean): void {
+    this.mode = mode;
     try {
       console.log('Toggle lightMode in HomeComponent: ' + mode);
       document.getElementById('container').style.backgroundColor = mode ? 'white' : 'rgb(73, 69, 69)';

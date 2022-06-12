@@ -172,9 +172,11 @@
     .scroll-right {
       margin: 0;
       background: url('../../../assets/arrowR.png') no-repeat;
-      background-size: 3vw;
+      background-size: contain;
       width: 3vw;
       height: 3vw;
+      min-width: 30px;
+      min-height: 30px;
       border: none;
       opacity: 70%;
       display: block;
@@ -184,9 +186,11 @@
       margin: 0;
       padding: 0;
       background: url('../../../assets/arrowL.png') no-repeat;
-      background-size: 3vw;
+      background-size: contain;
       width: 3vw;
       height: 3vw;
+      min-width: 30px;
+      min-height: 30px;
       border: none;
       opacity: 70%;
       display: none;
@@ -197,9 +201,11 @@
       left: 95%;
       top: 90%;
       background: url('../../../assets/arrowUp.png') no-repeat;
-      background-size: 2vw;
+      background-size: contain;
       width: 2vw;
       height: 2vw;
+      min-width: 30px;
+      min-height: 30px;
       border: none;
       display: none;
     }

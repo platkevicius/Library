@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute} from '@angular/router';
@@ -11,7 +11,7 @@ import {ModeService} from "../../services/mode.service";
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -36,11 +36,14 @@ export class SearchResultComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.modeService.toggleMode.subscribe(
       (mode) => {
         this.setMode(mode);
       }
     );
+
+    this.setMode(this.route.snapshot.queryParamMap.get('mode'));
 
     this.query = this.route.snapshot.queryParamMap.get('query');
     this.author = this.route.snapshot.queryParamMap.get('author');
@@ -120,13 +123,23 @@ export class SearchResultComponent implements OnInit {
   }
 
   private setMode(mode): void {
+
+    if (mode === 'true') {
+      mode = true;
+    } else if (mode === 'false') {
+      mode = false;
+    }
+
     console.log('Toggle lightMode in SearchComponent: ' + mode);
 
     try {
-      console.log('Toggle lightMode in HomeComponent: ' + mode);
+      console.log('Toggled lightMode in Search: ' + mode);
       document.getElementById('color').style.backgroundColor = mode ? 'lightgrey' : 'rgb(36, 32, 32)';
+      if (!mode) {
+        document.getElementById('color').style.backgroundColor = 'rgb(36, 32, 32)';
+      }
     } catch (e) {
-      console.log('Could not set mode in HomeComponent');
+      console.log('Could not set mode in SearchComponent');
     }
   }
 }

@@ -25,7 +25,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AuthorItemComponent } from './components/home/author-item/author-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DownloadedItemComponent } from './components/home/downloaded-item/downloaded-item.component';
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { DarkmodeDirective } from './directives/darkmode.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     SpinnerOverlayComponent,
     FooterComponent,
     AuthorItemComponent,
-    DownloadedItemComponent
+    DownloadedItemComponent,
+    DarkmodeDirective
   ],
     imports: [
         BrowserModule,
