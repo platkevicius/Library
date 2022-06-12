@@ -135,7 +135,7 @@ export class HomeComponent implements OnInit {
       document.getElementById('scroll-left').style.display = 'block';
     }
 
-    if (scrollDist + scrollElem.offsetWidth + scrollingBy >= scrollElem.scrollWidth) {
+    if (scrollDist + scrollElem.offsetWidth + scrollingBy + 1 >= scrollElem.scrollWidth) {
       document.getElementById('scroll-right').style.display = 'none';
     } else {
       document.getElementById('scroll-right').style.display = 'block';
@@ -151,7 +151,7 @@ export class HomeComponent implements OnInit {
       document.getElementById('scroll-left-downloads').style.display = 'block';
     }
 
-    if (scrollDist + scrollElem.offsetWidth + scrollingBy >= scrollElem.scrollWidth) {
+    if (scrollDist + scrollElem.offsetWidth + scrollingBy + 1 >= scrollElem.scrollWidth) {
       document.getElementById('scroll-right-downloads').style.display = 'none';
     } else {
       document.getElementById('scroll-right-downloads').style.display = 'block';
