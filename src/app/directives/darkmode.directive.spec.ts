@@ -1,4 +1,4 @@
-import { DarkmodeDirective } from './darkmode.directive';
+import {DarkmodeDirective} from './darkmode.directive';
 
 describe('DarkmodeDirective', () => {
   it('should create an instance', () => {

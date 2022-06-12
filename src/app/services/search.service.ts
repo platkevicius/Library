@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SearchResponse } from '../models/SearchResponse';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
 // @ts-ignore
 @Injectable({
@@ -9,7 +8,8 @@ import { SearchResponse } from '../models/SearchResponse';
 })
 export class SearchService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   searchByQuery(query: String = ''): Observable<any> {
     return this.http.get<any>('https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + query + '&configuration=default');
@@ -17,7 +17,7 @@ export class SearchService {
 
   searchWithFilter(query: String, author: String, from: String, to: String): Observable<any> {
     let useQuery = query;
-    if(query == null) {
+    if (query == null) {
       useQuery = '';
     }
     let url = 'https://webtech.informatik.unibw-muenchen.de/server/api/discover/search/objects?query=' + useQuery;

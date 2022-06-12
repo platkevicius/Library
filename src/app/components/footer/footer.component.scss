@@ -1,29 +1,29 @@
 footer {
-    //bottom:0;
-    background-color: black;
-    padding: 12px;
+  //bottom:0;
+  background-color: black;
+  padding: 12px;
 
-    color: white;
+  color: white;
 
-    h2 {
-        margin: 0;
+  h2 {
+    margin: 0;
+  }
+
+  a {
+    margin: 0;
+
+    text-decoration: none;
+
+    img {
+      width: 40px;
+      height: 30px;
+
+      margin-right: 10px;
     }
 
-    a {
-        margin: 0;
-
-        text-decoration: none;
-
-        img {
-            width: 40px;
-            height: 30px;
-
-            margin-right: 10px;
-        }
-
-        &:hover {
-            text-decoration: underline;
-            color: rgb(46, 108, 129);
-        }
+    &:hover {
+      text-decoration: underline;
+      color: rgb(46, 108, 129);
     }
+  }
 }

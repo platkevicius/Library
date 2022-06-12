@@ -1,8 +1,6 @@
-import {Component, ElementRef, EventEmitter, HostBinding, OnInit, Output, ViewChild} from '@angular/core';
-import {ViewportScroller} from '@angular/common';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {ModeService} from '../../services/mode.service';
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-header',
@@ -16,9 +14,8 @@ export class HeaderComponent implements OnInit {
   lightMode = false;
 
 
-
-
-  constructor(private modeService: ModeService, private router: Router) { }
+  constructor(private modeService: ModeService, private router: Router) {
+  }
 
   ngOnInit(): void {
 
@@ -36,14 +33,14 @@ export class HeaderComponent implements OnInit {
       document.getElementById(elementId).scrollIntoView({behavior: 'smooth', block: 'center'});
     } else {
       this.router.navigate(['/']).then(() => {
-        window.scrollTo({top: document.getElementById(elementId).offsetTop, behavior: 'smooth'});
+          window.scrollTo({top: document.getElementById(elementId).offsetTop, behavior: 'smooth'});
         }
       );
     }
   }
 
   routeToSearch(): void {
-    this.router.navigate(['/searchResult'], {queryParams: { mode: this.lightMode}});
+    this.router.navigate(['/searchResult'], {queryParams: {mode: this.lightMode}});
   }
 
 }

@@ -4,11 +4,12 @@ import {ModeService} from "../services/mode.service";
 @Directive({
   selector: '[appDarkmode]'
 })
-export class DarkmodeDirective implements OnInit{
+export class DarkmodeDirective implements OnInit {
 
   @HostBinding('class') className = '';
 
-  constructor(protected modeService: ModeService) { }
+  constructor(protected modeService: ModeService) {
+  }
 
   ngOnInit(): void {
 

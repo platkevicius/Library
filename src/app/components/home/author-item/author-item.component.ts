@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SearchResponse} from "../../../models/SearchResponse";
-import {Authors} from "../../../models/Authors";
 
 @Component({
   selector: 'app-author-item',
@@ -14,7 +12,8 @@ export class AuthorItemComponent implements OnInit {
   @Input() publications: number;
   @Input() link: String;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

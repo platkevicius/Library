@@ -1,12 +1,12 @@
-import {EventEmitter, Injectable, Output, OnInit} from '@angular/core';
-import {Router, NavigationStart, Event as NavigationEvent, NavigationEnd} from '@angular/router';
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {Event as NavigationEvent, NavigationEnd, Router} from '@angular/router';
 
 
 // @ts-ignore
 @Injectable({
   providedIn: 'root'
 })
-export class ModeService{
+export class ModeService {
 
   lightMode = false;
 

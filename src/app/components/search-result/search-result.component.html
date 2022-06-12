@@ -1,54 +1,53 @@
 <div class="color" id="color">
-<form #form="ngForm" (submit)="onSubmit()">
+  <form #form="ngForm" (submit)="onSubmit()">
     <mat-form-field class="bar" appearance="outline" md-colors="{backgroundColor:black}">
-        <mat-label>SEARCH</mat-label>
-        <input type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
+      <mat-label>SEARCH</mat-label>
+      <input type="text" [(ngModel)]="query" name="query" matInput placeholder="Mathematics">
     </mat-form-field>
 
     <button type="submit" hidden #btn></button>
-</form>
+  </form>
 
-<div class="container">
+  <div class="container">
     <div id="search-result" class="Search-Result">
-        <app-search-result-item *ngFor="let item of pageSlice" [title]="item.dcTitle" [authors]="item.dcCreator" [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
+      <app-search-result-item *ngFor="let item of pageSlice" [title]="item.dcTitle" [authors]="item.dcCreator"
+                              [description]="item.dcDescription" [date]="item.dcDate"></app-search-result-item>
     </div>
     <div class="Filter">
-      <div class = "Fcolor" >
+      <div class="Fcolor">
 
-      <h1>FILTER</h1>
-      <div class="date">
-        <form [formGroup]="filter" (submit)="filterResults()">
-          <mat-form-field appearance="fill">
-            <mat-label>FROM</mat-label>
-            <input formControlName="from" matInput>
-            <mat-hint>YYYY</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>TO</mat-label>
-            <input formControlName="to" matInput>
-            <mat-hint>YYYY</mat-hint>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label id="authorFilter">Author</mat-label>
-            <input formControlName="author" matInput>
-          </mat-form-field>
-          <br>
-          <button mat-button>Apply</button>
-        </form>
-      </div>
-
-
+        <h1>FILTER</h1>
+        <div class="date">
+          <form [formGroup]="filter" (submit)="filterResults()">
+            <mat-form-field appearance="fill">
+              <mat-label>FROM</mat-label>
+              <input formControlName="from" matInput>
+              <mat-hint>YYYY</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>TO</mat-label>
+              <input formControlName="to" matInput>
+              <mat-hint>YYYY</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label id="authorFilter">Author</mat-label>
+              <input formControlName="author" matInput>
+            </mat-form-field>
+            <br>
+            <button mat-button>Apply</button>
+          </form>
+        </div>
 
 
       </div>
     </div>
-</div>
+  </div>
 
-<mat-paginator
+  <mat-paginator
     [length]="this.mockData.length"
     [pageSize]="5"
     [pageSizeOptions]="[5, 10]"
     (page)="OnPageChange($event)"
     aria-label="Select page">
-</mat-paginator>
+  </mat-paginator>
 </div>

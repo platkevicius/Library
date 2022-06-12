@@ -1,9 +1,9 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable } from '@angular/core';
-import { defer, NEVER } from 'rxjs';
-import { finalize, share } from 'rxjs/operators';
-import { SpinnerOverlayComponent } from '../components/spinner-overlay/spinner-overlay.component';
+import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import {ComponentPortal} from '@angular/cdk/portal';
+import {Injectable} from '@angular/core';
+import {defer, NEVER} from 'rxjs';
+import {finalize, share} from 'rxjs/operators';
+import {SpinnerOverlayComponent} from '../components/spinner-overlay/spinner-overlay.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class SpinnerOverlayService {
 
   private overlayRef: OverlayRef = undefined;
 
-  constructor(private overlay: Overlay) { }
+  constructor(private overlay: Overlay) {
+  }
 
   public show(): void {
     Promise.resolve(null).then(() => {
@@ -33,7 +34,7 @@ export class SpinnerOverlayService {
     this.overlayRef = undefined;
   }
 
-  
+
   public readonly spinner$ = defer(() => {
     this.show();
     return NEVER.pipe(

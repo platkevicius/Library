@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SpinnerOverlayService } from './spinner-overlay.service';
+import {SpinnerOverlayService} from './spinner-overlay.service';
 
 describe('SpinnerOverlayService', () => {
   let service: SpinnerOverlayService;

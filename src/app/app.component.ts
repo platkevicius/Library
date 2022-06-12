@@ -1,4 +1,4 @@
-import {Component, Directive, HostBinding, OnInit, ViewChild} from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {ModeService} from './services/mode.service';
 
 @Component({
@@ -7,9 +7,10 @@ import {ModeService} from './services/mode.service';
   styleUrls: ['./app.component.scss'],
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  constructor(protected modeService: ModeService) {}
+  constructor(protected modeService: ModeService) {
+  }
 
   @HostBinding('class') className = '';
 

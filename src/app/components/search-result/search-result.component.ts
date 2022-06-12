@@ -1,5 +1,5 @@
-import {AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute} from '@angular/router';
 import {SearchResponse} from 'src/app/models/SearchResponse';
@@ -11,7 +11,7 @@ import {ModeService} from "../../services/mode.service";
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
-export class SearchResultComponent implements OnInit{
+export class SearchResultComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
