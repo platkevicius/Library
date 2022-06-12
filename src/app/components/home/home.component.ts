@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
             nameOfArticle = object._embedded.indexableObject.name;
           }
 
-          if (object._embedded.indexableObject.metadata['dc.contributor.author'][0].value != null) {
+          if (object._embedded.indexableObject.metadata['dc.contributor.author'] != null) {
             author = object._embedded.indexableObject.metadata['dc.contributor.author'][0].value;
           }
           if (object._embedded.indexableObject.metadata['dc.date.issued'] != null) {
@@ -75,18 +75,6 @@ export class HomeComponent implements OnInit {
   onSubmit(): void {
     console.log('Query: ' + this.query);
     this.router.navigate(['/searchResult'], {queryParams: {query: this.query, mode: this.mode}});
-    // TODO: add rest call for getting data and pass the data to the serach result component
-    this.searchService.searchByQuery('mathematics').subscribe(res => {
-      console.log(res._embedded.searchResult._embedded);
-      res._embedded.searchResult._embedded.objects.forEach(object => {
-        console.log('Title: ' + object._embedded.indexableObject.name);
-        console.log('Authors: ');
-        object._embedded.indexableObject.metadata['dc.contributor.author'].forEach(author => {
-          console.log(author.value);
-        });
-        console.log('Abstract: ' + object._embedded.indexableObject.metadata['dc.description.abstract'][0].value);
-      });
-    });
   }
 
 
