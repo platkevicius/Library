@@ -14,6 +14,7 @@ export class DownloadedItemComponent implements OnInit {
 
   @Input() dateIssued: String
   @Input() nameOfArticle: String
+  @Input() author: String
 
   constructor() {
   }

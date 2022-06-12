@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {SearchService} from 'src/app/services/search.service';
@@ -46,13 +46,29 @@ export class HomeComponent implements OnInit {
     // Get data for article names
     this.searchService.loadArticles()
       .subscribe(response => {
-        console.log(response);
-        for (let i = 0; i < 20; i++) {
-          this.dData[i] = {
-            nameOfArticle: response._embedded.searchResult._embedded.objects[i]._embedded.indexableObject.name
-          };
-        }
+        response._embedded.searchResult._embedded.objects.forEach(object => {
+          let nameOfArticle = '';
+          let author = '';
+          let publicationDate = '';
+
+          if (object._embedded.indexableObject.name != null) {
+            nameOfArticle = object._embedded.indexableObject.name;
+          }
+
+          if (object._embedded.indexableObject.metadata['dc.contributor.author'][0].value != null) {
+            author = object._embedded.indexableObject.metadata['dc.contributor.author'][0].value;
+          }
+          if (object._embedded.indexableObject.metadata['dc.date.issued'] != null) {
+            publicationDate = object._embedded.indexableObject.metadata['dc.date.issued'][0].value;
+          }
+
+
+          this.dData.push({nameOfArticle: nameOfArticle, publicationDate: publicationDate, author: author});
+        })
       });
+
+
+
   }
 
 

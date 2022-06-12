@@ -3,7 +3,6 @@
 .download {
 
 
-
   margin: 10px;
 
   cursor: pointer;
@@ -11,10 +10,13 @@
   height: 70%;
 
   mat-card-title {
-    font-size: medium;
+    font-size: 15px;
   }
 
-  #description {
-    color: gray;
-  }
+#name-tag {
+  text-decoration: underline;
 }
+
+}
+
+
