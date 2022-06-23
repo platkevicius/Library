@@ -4,7 +4,7 @@ import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {ActivatedRoute} from '@angular/router';
 import {SearchResponse} from 'src/app/models/SearchResponse';
 import {SearchService} from 'src/app/services/search.service';
-import {ModeService} from "../../services/mode.service";
+import {ModeService} from '../../services/mode.service';
 
 @Component({
   selector: 'app-search-result',

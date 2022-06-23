@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
 
 
           this.dData.push({nameOfArticle: nameOfArticle, publicationDate: publicationDate, author: author});
-        })
+        });
       });
 
 
@@ -176,7 +176,7 @@ export class HomeComponent implements OnInit {
   }
 
   authorClicked(aName): void {
-    this.router.navigate(['/searchResult'], {queryParams: {author: aName}});
+    this.router.navigate(['/searchResult'], {queryParams: {author: aName, mode: this.mode}});
   }
 
   setMode(mode: boolean): void {
